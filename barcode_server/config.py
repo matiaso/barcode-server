@@ -213,6 +213,46 @@ class AppConfig(ConfigBase):
         required=True
     )
 
+    MQTT_CERT_FILE = StringConfigEntry(
+        key_path=[
+            CONFIG_NODE_ROOT,
+            CONFIG_NODE_MQTT,
+            "cert_file"
+        ],
+        default=None,
+        required=False
+    )
+
+    MQTT_CA_FILE = StringConfigEntry(
+        key_path=[
+            CONFIG_NODE_ROOT,
+            CONFIG_NODE_MQTT,
+            "ca_file"
+        ],
+        default=None,
+        required=False
+    )
+
+    MQTT_PRIVATE_KEY = StringConfigEntry(
+        key_path=[
+            CONFIG_NODE_ROOT,
+            CONFIG_NODE_MQTT,
+            "private_key"
+        ],
+        default=None,
+        required=False
+    )
+
+    MQTT_VERSION = IntConfigEntry(
+        key_path=[
+            CONFIG_NODE_ROOT,
+            CONFIG_NODE_MQTT,
+            "version"
+        ],
+        default=4,  # 3, 4 or 5
+        required=False
+    )
+
     DEVICE_PATTERNS = ListConfigEntry(
         item_type=RegexConfigEntry,
         item_args={

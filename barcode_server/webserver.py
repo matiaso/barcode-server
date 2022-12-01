@@ -4,6 +4,7 @@ from typing import Dict
 
 import aiohttp
 from aiohttp import web
+from asyncio_mqtt import TLSParameters
 from aiohttp.web_middlewares import middleware
 from prometheus_async.aio import time
 
@@ -51,6 +52,12 @@ class Webserver:
                 topic=config.MQTT_TOPIC.value,
                 qos=config.MQTT_QOS.value,
                 retain=config.MQTT_RETAIN.value,
+                tls_params=TLSParameters(
+                    certfile=config.MQTT_CERT_FILE.value,
+                    ca_certs=config.MQTT_CA_FILE.value,
+                    keyfile=config.MQTT_PRIVATE_KEY.value
+                ),
+                protocol=config.MQTT_VERSION.value
             )
             self.notifiers["mqtt"] = mqtt_notifier
 
